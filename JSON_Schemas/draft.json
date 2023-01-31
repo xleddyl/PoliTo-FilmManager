@@ -1,0 +1,49 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "http://xleddyl/draft.json",
+   "title": "draft",
+   "description": "JSON Schema for Draft data structures",
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+      "$schema": {
+         "type": "string",
+         "description": "path to the JSON Schema to use for the validation of the data structure"
+      },
+      "id": {
+         "type": "integer",
+         "description": "unique identifier for the draft review"
+      },
+      "reviewId": {
+         "type": "integer",
+         "description": "unique identifier of the the review for which this draft has been issued"
+      },
+      "reviewerId": {
+         "type": "integer",
+         "description": "unique identifier of the the user who has created this draft review"
+      },
+      "open": {
+         "type": "boolean",
+         "description": "true if the draft review is open, false otherwise",
+         "default": true
+      },
+      "proposedRating": {
+         "type": "integer",
+         "description": "the proposed rating the reviewer has given to the film",
+         "minimum": 1,
+         "maximum": 10
+      },
+      "proposedReview": {
+         "type": "string",
+         "description": "a textual description of the proposed review",
+         "maxLength": 1000
+      },
+      "judgment": {
+         "type": "array",
+         "items": {
+            "$ref": "./judgment.json"
+         }
+      }
+   },
+   "required": ["reviewId", "reviewerId", "proposedRating", "proposedReview"]
+}

@@ -1,0 +1,55 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "http://xleddyl/judgment.json",
+   "title": "Judgment",
+   "description": "JSON Schema for Judgment data structures",
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+      "$schema": {
+         "type": "string",
+         "description": "path to the JSON Schema to use for the validation of the data structure"
+      },
+      "draftId": {
+         "type": "integer",
+         "description": "unique identifier of the the draft review for which this judgment has been issued"
+      },
+      "reviewerId": {
+         "type": "integer",
+         "description": "unique identifier of the the user who has created this judgment"
+      },
+      "agree": {
+         "type": "boolean",
+         "description": "true if the judgment is positive, false otherwise",
+         "default": true
+      },
+      "comment": {
+         "type": "string",
+         "description": "a textual description of the disagreement reason",
+         "maxLength": 1000
+      }
+   },
+   "required": ["draftId", "reviewerId"],
+   "dependencies": {
+      "agree": {
+         "oneOf": [
+            {
+               "properties": {
+                  "agree": {
+                     "const": true
+                  }
+               },
+               "not": { "required": ["comment"] }
+            },
+            {
+               "properties": {
+                  "agree": {
+                     "const": false
+                  }
+               },
+               "required": ["comment"]
+            }
+         ]
+      }
+   }
+}

@@ -1,0 +1,65 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "http://xleddyl/film.json",
+   "title": "Film",
+   "description": "JSON Schema for Film data structures",
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+      "$schema": {
+         "type": "string",
+         "description": "path to the JSON Schema to use for the validation of the data structure"
+      },
+      "id": {
+         "type": "integer",
+         "description": "unique identifier for the film"
+      },
+      "title": {
+         "type": "string",
+         "description": "textual title of the film"
+      },
+      "owner": {
+         "type": "integer",
+         "description": "unique identifier of the film owner"
+      },
+      "private": {
+         "type": "boolean",
+         "description": "true if only the film owner can have access to it, false otherwise",
+         "default": true
+      },
+      "watchDate": {
+         "type": "string",
+         "format": "date",
+         "description": "the date when the film was watched by the owner"
+      },
+      "rating": {
+         "type": "integer",
+         "description": "the rating the owner has given to the film",
+         "minimum": 1,
+         "maximum": 10
+      },
+      "favorite": {
+         "type": "boolean",
+         "description": "true if the film is among the favourite ones of the owner, false otherwise ",
+         "default": false
+      }
+   },
+   "required": ["id", "title", "owner", "private"],
+   "dependencies": {
+      "watchDate": {
+         "properties": {
+            "private": { "const": true }
+         }
+      },
+      "rating": {
+         "properties": {
+            "private": { "const": true }
+         }
+      },
+      "favorite": {
+         "properties": {
+            "private": { "const": true }
+         }
+      }
+   }
+}

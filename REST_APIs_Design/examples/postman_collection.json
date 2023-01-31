@@ -1,0 +1,390 @@
+{
+   "info": {
+      "_postman_id": "25dc1de6-5ac1-48a2-90f9-c98bbb157d63",
+      "name": "requests",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+   },
+   "item": [
+      {
+         "name": "Review",
+         "item": [
+            {
+               "name": "issue reviews",
+               "request": {
+                  "description": "",
+                  "method": "POST",
+                  "header": [{ "key": "Content-Type", "value": "application/json" }],
+                  "body": {
+                     "mode": "raw",
+                     "raw": "[\n\t{\n\t\t\"filmId\": 9,\n\t\t\"coop\": true,\n\t\t\"reviewersId\": [1, 2]\n\t},\n\t{\n\t\t\"filmId\": 9,\n\t\t\"reviewerId\": 3\n\t}\n]"
+                  },
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public/9/reviews",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public", "9", "reviews"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "delete review",
+               "request": {
+                  "description": "",
+                  "method": "DELETE",
+                  "header": [],
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public/9/reviews/6",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public", "9", "reviews", "6"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "get reviews",
+               "request": {
+                  "description": "",
+                  "method": "GET",
+                  "header": [{ "key": "Content-Type", "value": "application/json" }],
+                  "body": { "mode": "raw", "raw": "" },
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public/9/reviews",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public", "9", "reviews"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "update review",
+               "request": {
+                  "description": "",
+                  "method": "PUT",
+                  "header": [{ "key": "Content-Type", "value": "application/json" }],
+                  "body": {
+                     "mode": "raw",
+                     "raw": "{\n\t\"filmId\": 3,\n\t\"reviewerId\": 1,\n\t\"completed\": true,\n\t\"rating\": 2,\n\t\"reviewDate\": \"2023-01-18\",\n\t\"review\": \"boring\"\n}"
+                  },
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public/:filmId/reviews/:reviewId",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public", ":filmId", "reviews", ":reviewId"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "get review",
+               "request": {
+                  "description": "",
+                  "method": "GET",
+                  "header": [{ "key": "Content-Type", "value": "application/json" }],
+                  "body": { "mode": "raw", "raw": "" },
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public/9/reviews/12",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public", "9", "reviews", "12"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            }
+         ]
+      },
+      {
+         "name": "Film",
+         "item": [
+            {
+               "name": "get public films",
+               "request": {
+                  "description": "",
+                  "method": "GET",
+                  "header": [],
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "get private films",
+               "request": {
+                  "description": "",
+                  "method": "GET",
+                  "header": [],
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/private",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "private"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "get private film",
+               "request": {
+                  "description": "",
+                  "method": "GET",
+                  "header": [],
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/private/1",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "private", "1"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "get public film",
+               "request": {
+                  "description": "",
+                  "method": "GET",
+                  "header": [],
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public/2",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public", "2"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "get invited films",
+               "request": {
+                  "description": "",
+                  "method": "GET",
+                  "header": [],
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public/invited",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public", "invited"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "create film",
+               "request": {
+                  "description": "",
+                  "method": "POST",
+                  "header": [{ "key": "Content-Type", "value": "application/json" }],
+                  "body": {
+                     "mode": "raw",
+                     "raw": "{\n\t\"id\": 2,\n\t\"title\": \"Matrix\",\n\t\"owner\": 1,\n\t\"private\": true\n}"
+                  },
+                  "url": {
+                     "raw": "http://localhost:3001/api/films",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "update private film",
+               "request": {
+                  "description": "",
+                  "method": "PUT",
+                  "header": [{ "key": "Content-Type", "value": "application/json" }],
+                  "body": {
+                     "mode": "raw",
+                     "raw": "{\n\t\"id\": 1,\n\t\"title\": \"Matrix\",\n\t\"owner\": 1,\n\t\"private\": false\n}"
+                  },
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/private/1",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "private", "1"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "delete private film",
+               "request": {
+                  "description": "",
+                  "method": "DELETE",
+                  "header": [],
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/private/1",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "private", "1"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "update public film",
+               "request": {
+                  "description": "",
+                  "method": "PUT",
+                  "header": [{ "key": "Content-Type", "value": "application/json" }],
+                  "body": {
+                     "mode": "raw",
+                     "raw": "{\n\t\"id\": 1,\n\t\"title\": \"Matrix\",\n\t\"owner\": 1,\n\t\"private\": true\n}"
+                  },
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public/1",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public", "1"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "delete public film",
+               "request": {
+                  "description": "",
+                  "method": "DELETE",
+                  "header": [],
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public/9",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public", "9"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            }
+         ]
+      },
+      {
+         "name": "User",
+         "item": [
+            {
+               "name": "authenticate user",
+               "request": {
+                  "description": "",
+                  "method": "POST",
+                  "header": [{ "key": "Content-Type", "value": "application/json" }],
+                  "body": {
+                     "mode": "raw",
+                     "raw": "{\n\t\"email\": \"user.dsp@polito.it\",\n\t\"password\": \"password\"\n}"
+                  },
+                  "url": {
+                     "raw": "http://localhost:3001/api/users/authenticator?type=login",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "users", "authenticator?type=login"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "get users",
+               "request": {
+                  "description": "",
+                  "method": "GET",
+                  "header": [],
+                  "url": {
+                     "raw": "http://localhost:3001/api/users",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "users"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "get user",
+               "request": {
+                  "description": "",
+                  "method": "GET",
+                  "header": [],
+                  "url": {
+                     "raw": "http://localhost:3001/api/users/3",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "users", "3"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            }
+         ]
+      },
+      {
+         "name": "Draft",
+         "item": [
+            {
+               "name": "get drafts",
+               "request": {
+                  "description": "",
+                  "method": "GET",
+                  "header": [],
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public/3/reviews/11/drafts",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public", "3", "reviews", "11", "drafts"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "get draft",
+               "request": {
+                  "description": "",
+                  "method": "GET",
+                  "header": [],
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public/9/reviews/12/drafts/1",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public", "9", "reviews", "12", "drafts", "1"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "create draft",
+               "request": {
+                  "description": "",
+                  "method": "POST",
+                  "header": [{ "key": "Content-Type", "value": "application/json" }],
+                  "body": {
+                     "mode": "raw",
+                     "raw": "{\n\t\"reviewId\": 12,\n\t\"reviewerId\": 1,\n\t\"proposedRating\": 6,\n\t\"proposedReview\": \"A comment that should make sense\"\n}"
+                  },
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public/9/reviews/12/drafts",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public", "9", "reviews", "12", "drafts"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            },
+            {
+               "name": "judicate draft",
+               "request": {
+                  "description": "",
+                  "method": "PUT",
+                  "header": [{ "key": "Content-Type", "value": "application/json" }],
+                  "body": { "mode": "raw", "raw": "{\n\t\"draftId\": 1,\n\t\"reviewerId\": 1\n}" },
+                  "url": {
+                     "raw": "http://localhost:3001/api/films/public/3/reviews/11/drafts/1",
+                     "host": ["{{ _", "url }}"],
+                     "path": ["api", "films", "public", "3", "reviews", "11", "drafts", "1"]
+                  },
+                  "auth": {}
+               },
+               "response": []
+            }
+         ]
+      }
+   ]
+}

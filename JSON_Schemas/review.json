@@ -1,0 +1,108 @@
+{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "$id": "http://xleddyl/review.json",
+   "title": "Review",
+   "description": "JSON Schema for Review data structures",
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+      "$schema": {
+         "type": "string",
+         "description": "path to the JSON Schema to use for the validation of the data structure"
+      },
+      "id": {
+         "type": "integer",
+         "description": "unique identifier for the review"
+      },
+      "filmId": {
+         "type": "integer",
+         "description": "unique identifier of the film for which this review invitation has been issued"
+      },
+      "reviewerId": {
+         "type": "integer",
+         "description": "unique identifier of the the user who has received this review invitation"
+      },
+      "reviewersId": {
+         "type": "array",
+         "description": "the list of identifier of the the users which have received this review invitation",
+         "items": {
+            "type": "integer"
+         },
+         "minItems": 2
+      },
+      "completed": {
+         "type": "boolean",
+         "description": "true if the review has been completed, false otherwise",
+         "default": false
+      },
+      "reviewDate": {
+         "type": "string",
+         "format": "date",
+         "description": "the date when the review has been completed by the invited user"
+      },
+      "rating": {
+         "type": "integer",
+         "description": "the rating the reviewer has given to the film",
+         "minimum": 1,
+         "maximum": 10
+      },
+      "coop": {
+         "type": "boolean",
+         "description": "whether the review is a co-op one or not",
+         "default": false
+      },
+      "review": {
+         "type": "string",
+         "description": "a textual description of the review",
+         "maxLength": 1000
+      }
+   },
+   "required": ["filmId"],
+   "dependencies": {
+      "completed": {
+         "oneOf": [
+            {
+               "properties": {
+                  "completed": {
+                     "const": false
+                  }
+               },
+               "allOf": [
+                  { "not": { "required": ["reviewDate"] } },
+                  { "not": { "required": ["rating"] } },
+                  { "not": { "required": ["review"] } }
+               ]
+            },
+            {
+               "properties": {
+                  "completed": {
+                     "const": true
+                  }
+               },
+               "required": ["reviewDate", "rating", "review"]
+            }
+         ]
+      },
+      "reviewDate": ["completed"],
+      "rating": ["completed"],
+      "review": ["completed"]
+   },
+   "allOf": [
+      {
+         "if": {
+            "anyOf": [
+               { "not": { "required": ["coop"] } },
+               { "properties": { "coop": { "const": false } } }
+            ]
+         },
+         "then": {
+            "required": ["reviewerId"],
+            "not": {"required": ["reviewersId"]}
+         },
+         "else": {
+            "required": ["reviewersId"],
+            "not": {"required": ["reviewerId"]}
+         }
+      }
+   ]
+}
